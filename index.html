@@ -9,29 +9,29 @@
     <link rel="stylesheet" type="text/css" media="screen" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
     <!-- JQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <!-- JavaScript -->
-    <script src="assets/javascript/app.js"></script>
 </head>
 <body>
     <div class="container">
         <br />
-        <div class="row" id="button-list">
+        <div id="button-list" class="row">
             <!-- Stores buttons -->
         </div>
-        <div class="row">
+        <div id="gif-display" class="row">
             <div class="col-md-8">
                 <!-- Stores GIFs -->
             </div>
             <div class="col-md-4">
                 <form>
                     <div class="form-group">
-                        <label for="newFood">Add a food:</label>
-                        <input type="text" class="form-control" id="newFood">
+                        <label for="food-input">Add a food:</label>
+                        <input type="text" class="form-control" id="food-input" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-info" id="create-food-button">Submit</button>
                 </form>
             </div>
         </div>
     </div>
+    <!-- JavaScript -->
+    <script src="assets/javascript/app.js"></script>
 </body>
 </html>

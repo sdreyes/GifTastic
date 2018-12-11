@@ -1,9 +1,9 @@
-var foods = ["pancakes", "pizza", "sushi", "waffles", "bacon", "tacos", "cheeseburger"];
+var foods = ["pancakes", "pizza", "sushi", "waffles", "bacon", "tacos", "cheeseburger", "spaghetti", "cake", "cookies", "brownies", "french fries", "chicken nuggets"];
 
 function displayGIFs() {
     var APIKey = "Fj3ngqeuQuyw4vMKcpLOLoipExrX5aJD";
-    var food = $(this).attr("data-name");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + food + "&api_key=" + APIKey + "&limit=10"
+    var foodTag = $(this).attr("data-food");
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + foodTag + "&api_key=" + APIKey + "&limit=10"
 
     $.ajax({
         url: queryURL,
@@ -21,9 +21,25 @@ function displayGIFs() {
     })
 }
 
-$("#newFoodButton").on("click", function() {
+function renderFoodButtons() {
+    $("#button-list").empty();
 
+    $.each(foods, function(i, food) {
+        var foodButton = $("<button>");
+        foodButton.attr("data-food", food);
+        foodButton.addClass("btn btn-info btn-sm m-1");
+        foodButton.text(food);
+        $("#button-list").append(foodButton);
+    });
+}
+
+$("#create-food-button").on("click", function() {
+    event.preventDefault();
+    var food = $("#food-input").val().trim();
+    foods.push(food);
+    renderFoodButtons();
+    $("#food-input").val("");
 })
 
-// on click
-// var tag = this.attr
+renderFoodButtons();
+console.log("hi");
