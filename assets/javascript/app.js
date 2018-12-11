@@ -3,7 +3,7 @@ var foods = ["pancakes", "pizza", "sushi", "waffles", "bacon", "tacos", "cheeseb
 function displayGIFs() {
     var APIKey = "Fj3ngqeuQuyw4vMKcpLOLoipExrX5aJD";
     var foodTag = $(this).attr("data-food");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + foodTag + "&api_key=" + APIKey + "&limit=10&rating=g"
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + foodTag + "&api_key=" + APIKey + "&limit=10&rating=g"
 
     $.ajax({
         url: queryURL,
