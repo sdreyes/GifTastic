@@ -3,21 +3,30 @@ var foods = ["pancakes", "pizza", "sushi", "waffles", "bacon", "tacos", "cheeseb
 function displayGIFs() {
     var APIKey = "Fj3ngqeuQuyw4vMKcpLOLoipExrX5aJD";
     var foodTag = $(this).attr("data-food");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + foodTag + "&api_key=" + APIKey + "&limit=10"
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + foodTag + "&api_key=" + APIKey + "&limit=10&rating=g"
 
     $.ajax({
         url: queryURL,
         method: "GET"
     })
     .then(function(response) {
-        var stillImageUrl = reponse.data.images.fixed_height_still.url;
-        var animatedImageUrl = response.data.images.fixed_height.url;
-        var foodImage = $("<img>");
-        foodImage.attr("src", stillImageUrl);
-        foodImage.attr("alt", food);
-        foodImage.attr("data-still", stillImageUrl);
-        foodImage.attr("data-animated", animatedImageUrl);
-        foodImage.attr("data-state", "still");
+        $.each(response.data, function(i, gif) {
+            var stillImageUrl = response.data[i].images.fixed_height_still.url;
+            var animatedImageUrl = response.data[i].images.fixed_height.url;
+            var foodContainer = $("<div>");
+            var ratingDisplay = $("<span>")
+            var foodImage = $("<img>");
+            foodImage.addClass("gif");
+            foodImage.attr("src", stillImageUrl);
+            foodImage.attr("alt", foodTag);
+            foodImage.attr("data-still", stillImageUrl);
+            foodImage.attr("data-animated", animatedImageUrl);
+            foodImage.attr("data-state", "still");
+            ratingDisplay.html("Rating: " + response.data[i].rating + "<br />");
+            foodContainer.addClass("float-left p-2");
+            foodContainer.append(ratingDisplay, foodImage);
+            $("#gif-display").prepend(foodContainer);
+        })
     })
 }
 
@@ -27,7 +36,7 @@ function renderFoodButtons() {
     $.each(foods, function(i, food) {
         var foodButton = $("<button>");
         foodButton.attr("data-food", food);
-        foodButton.addClass("btn btn-info btn-sm m-1");
+        foodButton.addClass("food-button btn btn-info btn-sm m-1");
         foodButton.text(food);
         $("#button-list").append(foodButton);
     });
@@ -41,5 +50,19 @@ $("#create-food-button").on("click", function() {
     $("#food-input").val("");
 })
 
+$(document).on("click", ".food-button", displayGIFs);
+
 renderFoodButtons();
 console.log("hi");
+
+$(document).on("click", ".gif", function() {
+    state = $(this).attr("data-state");
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animated"));
+        $(this).attr("data-state", "animated");
+    }
+    else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    }
+});
