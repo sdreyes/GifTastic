@@ -1,4 +1,4 @@
-var foods = ["pancakes", "pizza", "sushi", "waffles", "bacon", "tacos", "cheeseburger", "spaghetti", "cake", "cookies", "brownies", "french fries", "chicken nuggets"];
+var foods = ["pancakes", "pizza", "doughnuts", "sushi", "waffles", "bacon", "tacos", "cheeseburger", "spaghetti", "cake", "cookies", "brownies", "french fries", "chicken nuggets"];
 
 function displayGIFs() {
     var APIKey = "Fj3ngqeuQuyw4vMKcpLOLoipExrX5aJD";
@@ -22,9 +22,9 @@ function displayGIFs() {
             foodImage.attr("data-still", stillImageUrl);
             foodImage.attr("data-animated", animatedImageUrl);
             foodImage.attr("data-state", "still");
-            ratingDisplay.html("Rating: " + response.data[i].rating + "<br />");
+            ratingDisplay.html("<br />Rating: " + response.data[i].rating);
             foodContainer.addClass("float-left p-2");
-            foodContainer.append(ratingDisplay, foodImage);
+            foodContainer.append(foodImage, ratingDisplay);
             $("#gif-display").prepend(foodContainer);
         })
     })
