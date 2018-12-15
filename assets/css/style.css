@@ -1,0 +1,7 @@
+@media screen and (max-width: 980px) {
+
+    #content {
+        display: flex;
+        flex-wrap: wrap-reverse;
+    }
+}
