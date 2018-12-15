@@ -53,7 +53,6 @@ $("#create-food-button").on("click", function() {
 $(document).on("click", ".food-button", displayGIFs);
 
 renderFoodButtons();
-console.log("hi");
 
 $(document).on("click", ".gif", function() {
     state = $(this).attr("data-state");
