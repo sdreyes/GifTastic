@@ -4,6 +4,8 @@ A project showing my skills with AJAX and implementing APIs as of 12/15/2018.
 
 Click a button at the top to display 10 gifs related to that topic. Add a topic by typing in the input field and clicking submit. This will append a button to the end of the button list.
 
+Bonus: Fully mobile responsive!
+
 Parameters of the project:
 
 ### Instructions
